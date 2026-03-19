@@ -67,6 +67,16 @@ class PQApp(tk.Frame):
     
     def solve(self):
         left_poly, right_poly = self.read_fields()
+        left_poly = left_poly / left_poly.a
+        right_poly = right_poly / right_poly.a
+        left_poly = left_poly - right_poly
+        right_poly = Poly2(a=0, b=0, c=0)
+
+        x1, x2 = left_poly.solve()
+        x1 = self.left_b_entry.get()/-2 + ((self.left_b_entry.get()/2)**2 - self.left_c_entry.get())**0.5
+        x2= self.left_b_entry.get()/-2 - ((self.left_b_entry.get()/2)**2 - self.left_c_entry.get())**0.5
+        
+
         self.answertext.set("The Solve button was pressed.")
 
         ##NEEDS CODE TO SOLVE EQUATION HERE. CAN YOU DO IT?
@@ -77,4 +87,4 @@ def main():
     app.mainloop()
 
 if __name__=='__main__':
-    main()
+    main() 
